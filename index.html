@@ -8,7 +8,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
 
-    
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.js"></script>
 
 
@@ -22,96 +21,8 @@
     <!-- Prettyprint -->
     <link href="https://google-code-prettify.googlecode.com/svn/loader/prettify.css" rel="stylesheet" type="text/css">
     <script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
-    <title>Carousel Template for Bootstrap</title>
-    <script>
-      $(function() {
-        function tabsToSpaces(line, tabsize) {
-          var out   = '',
-            tabsize = tabsize || 4,
-            c;
-          for (c in line) {
-            var ch = line.charAt(c);
-            if (ch === '\t') {
-              do {
-                out += ' ';
-              } while (out.length % tabsize);
-            } else {
-              out += ch;
-            }
-          }
-          return out;
-        }
-
-        function visualizeElement(element, type) {
-          var code    = $(element).html().split('\n'),
-            tabsize   = 4,
-            minlength = 2E53,
-            l;
-
-          // Convert tabs to spaces
-          for (l in code) {
-            code[l] = tabsToSpaces(code[l], tabsize);
-          }
-
-
-          // determine minimum length
-          var minlength = 2E53;
-          var first = 2E53;
-          var last = 0;
-          for (l in code) {
-            if (/\S/.test(code[l])) {
-              minlength = Math.min(minlength, /^\s*/.exec(code[l])[0].length);
-              first = Math.min(first, l);
-              last = Math.max(last, l);
-            }
-          }
-
-          code = code.slice(first, last + 1);
-
-          // strip tabs at start
-          for (l in code) {
-            code[l] = code[l].slice(minlength);
-          }
-
-          // recombine
-          code = code.join('\n');
-
-          var fragment = $('<pre class="prettyprint"><code/></pre>').text(code).insertAfter(element);
-          $('<h3 class="clickable">'+type+'&hellip;</h3>').insertBefore(fragment).click(function() {
-            fragment.slideToggle();
-          });
-        }
-
-        // extract html fragments
-        $('div.prettyprint, span.prettyprint').each(function() {
-          visualizeElement(this, 'HTML');
-        });
-
-        // extract scripts
-        $('script.prettyprint').each(function() {
-          visualizeElement(this, 'Javascript');
-        });
-
-        // Include the readme
-        var markdown = new Markdown.Converter();
-        $.get('README.md', function(readme) {
-          $('#readme').html(markdown.makeHtml(readme));
-          $('#readme pre').addClass('prettyprint');
-          prettyPrint();
-
-          // build menu
-          var menuitems = [];
-          $('h1').each(function() {
-            var text  = $(this).text(),
-              id    = $(this).attr('id') || 'chapter '+text;
-            $(this).attr('id', id);
-            menuitems.push('<a href="#'+id+'">'+text+'</a>');
-          });
-          $(menu).html(menuitems.join(' &mdash; '));
-        }, 'html');
-      });
-    </script>
-
+    <title>Insert Name Here</title>
+    
     <!-- Tristate -->
     <script src="js/coverflow/jquery.coverflow.js"></script>
     <!-- Optionals -->
@@ -138,16 +49,26 @@
     height: 50px;
 " align="center">
   <p>
-        <button type="button" class="btn btn-lg btn-default">Default</button>
-        <button type="button" class="btn btn-lg btn-primary">Primary</button>
-        <button type="button" class="btn btn-lg btn-success">Success</button>
-        <button type="button" class="btn btn-lg btn-info">Info</button>
-        <button type="button" class="btn btn-lg btn-warning">Warning</button>
-        <button type="button" class="btn btn-lg btn-danger">Danger</button>
-        
+        <button type="button" class="btn btn-lg btn-primary" onclick="changeVisibility('#search')">o--</button>
+        <button type="button" class="btn btn-lg btn-primary">button</button>
+        <button type="button" class="btn btn-lg btn-success">:D</button>
+        <button type="button" class="btn btn-lg btn-primary">button</button>
+        <button type="button" class="btn btn-lg btn-primary">button</button> 
       </p>
+      <div class="col-md-4" align="center">
+      </div>
+      <div class="col-md-4" align="center">
+        <input id="search" placeholder="Search" type="text" class="hidden form-control col-md-12">
+      </div>
   </div>
-
+  <script>
+  function changeVisibility(id){
+    if($(id).hasClass('hidden'))
+      $(id).removeClass('hidden')
+    else
+      $(id).addClass('hidden')
+  }
+  </script>
 
     
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="
@@ -159,13 +80,40 @@
 ">
 
   <div id="preview">
-      <div id="preview-coverflow" style="height: 320px;">
+      <div id="preview-coverflow" style="height: 320px;width:100%" state="expanded" onclick="resizeBox()">
         
         <div class="cover" style="position: absolute; z-index: 3; left: -8.265701258081265px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#FFF;"><img class="reflected" src="js/coverflow/demo/person.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;background-color:#FFF;"></canvas></div>
         <div class="cover current" style="position: absolute; z-index: 4; left: 161px; -webkit-transform: scale(1, 1) perspective(321px) rotateY(0deg); -webkit-filter: none; width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#FFF;"><img class="reflected" src="js/coverflow/demo/rose.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
         <div class="cover" style="position: absolute; z-index: 3; left: 330.26570125808126px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(-57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#FFF;"><img class="reflected" src="js/coverflow/demo/seagull.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
         <div class="cover" style="position: absolute; z-index: 2; left: 388.9863273947651px; -webkit-transform: scale(0.5681980515339464, 0.5681980515339464) perspective(321px) rotateY(-43.18019484660536deg); width: 90%; height: 320px; background-color:#FFF;overflow: hidden; -webkit-filter: contrast(0.29289321881345254) brightness(1.7071067811865475); filter: none; display: block;"><img class="reflected" src="js/coverflow/demo/solarpower.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
       </div>
+
+<script>
+function resizeBox(){
+  if($("#preview-coverflow").attr("state") == "expanded")
+  {
+    $("#preview-coverflow").css("width","50%")
+    $(function(){
+      var items=$(".cover")
+      $.each(items,function (index,item) {
+        $(item).css("width","50%")
+      });
+    });
+    $("#preview-coverflow").attr("state","contracted")
+  }
+  else{
+    $("#preview-coverflow").css("width","100%")
+    $(function(){
+      var items=$(".cover")
+      $.each(items,function (index,item) {
+        $(item).css("width","90%")
+      });
+    });
+    $("#preview-coverflow").attr("state","expanded")
+  }
+}
+</script>
+
       <style>
         #preview {
           padding-bottom: 100px;
