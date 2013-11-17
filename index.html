@@ -49,7 +49,7 @@
     <script src="js/coverflow/jquery.touchSwipe.min.js"></script>
     <script src="js/coverflow/reflection.js"></script>
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <link href="http://getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
   <style type="text/css"></style><style id="holderjs-style" type="text/css"></style></head>
@@ -69,13 +69,14 @@ qrcode.callback=test
     width: 100%;
     margin: 0 auto;
     height: 50px;
+    padding-top:20px;
 " align="center">
   <p>
-        <button type="button" class="btn btn-lg btn-primary" onclick="changeVisibility('#search')">button</button>
-        <button type="button" class="btn btn-lg btn-primary">button</button>
+        <button type="button" class="btn btn-default" onclick="changeVisibility('#search')">button</button>
+        <button type="button" class="btn btn-default">button</button>
         <button type="button" class="btn btn-lg btn-success" onclick="changeVisibility('#video')">:D</button>
-        <button type="button" class="btn btn-lg btn-primary">button</button>
-        <button type="button" class="btn btn-lg btn-primary">button</button> 
+        <button type="button" class="btn btn-default">button</button>
+        <button type="button" class="btn btn-default">button</button> 
       </p>
       <div class="col-md-4" align="center">
       </div>
@@ -106,22 +107,22 @@ qrcode.callback=test
 
     
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="
-    /* min-height: 100%; */
-    height: 100%;
-    background-color: #000;
+    /* min-height: 100%; 
+    height: 100%; */
     margin-bottom:0px;
     padding-top: 100px;
+    overflow:hidden;
 ">
-
-  <div id="preview">
+<div class="col-lg-12">
+<div id="preview" style="padding-bottom:0">
       <div id="preview-coverflow" style="height: 320px;width:100%" state="expanded" onclick="resizeBox()">
         
-        <div class="cover" style="position: absolute; z-index: 3; left: -8.265701258081265px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#FFF;"><img class="reflected" src="js/coverflow/demo/person.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;background-color:#FFF;"></canvas></div>
-        <div class="cover current" style="position: absolute; z-index: 4; left: 161px; -webkit-transform: scale(1, 1) perspective(321px) rotateY(0deg); -webkit-filter: none; width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#FFF;"><img class="reflected" src="js/coverflow/demo/rose.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
-        <div class="cover" style="position: absolute; z-index: 3; left: 330.26570125808126px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(-57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#FFF;"><img class="reflected" src="js/coverflow/demo/seagull.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
-        <div class="cover" style="position: absolute; z-index: 2; left: 388.9863273947651px; -webkit-transform: scale(0.5681980515339464, 0.5681980515339464) perspective(321px) rotateY(-43.18019484660536deg); width: 90%; height: 320px; background-color:#FFF;overflow: hidden; -webkit-filter: contrast(0.29289321881345254) brightness(1.7071067811865475); filter: none; display: block;"><img class="reflected" src="js/coverflow/demo/solarpower.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
-      </div>
-
+        <div class="cover" style="position: absolute; z-index: 3; left: -8.265701258081265px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#000;"><img class="reflected" src="js/coverflow/demo/person.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;background-color:#000;"></canvas></div>
+        <div class="cover current" style="position: absolute; z-index: 4; left: 161px; -webkit-transform: scale(1, 1) perspective(321px) rotateY(0deg); -webkit-filter: none; width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#000;"><img class="reflected" src="js/coverflow/demo/rose.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
+        <div class="cover" style="position: absolute; z-index: 3; left: 330.26570125808126px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(-57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#000;"><img class="reflected" src="js/coverflow/demo/seagull.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
+        <div class="cover" style="position: absolute; z-index: 2; left: 388.9863273947651px; -webkit-transform: scale(0.5681980515339464, 0.5681980515339464) perspective(321px) rotateY(-43.18019484660536deg); width: 90%; height: 320px; background-color:#000;overflow: hidden; -webkit-filter: contrast(0.29289321881345254) brightness(1.7071067811865475); filter: none; display: block;"><img class="reflected" src="js/coverflow/demo/solarpower.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
+</div>
+</div>
 <script>
 function resizeBox(){
   if($("#preview-coverflow").attr("state") == "expanded")
@@ -195,8 +196,41 @@ function resizeBox(){
     </div>
     </div>
 
-  
-<div id="bottomSection"></div>
+
+<div id="bottomSection" style="
+    height: 100px;
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 0;
+    z-index: 55555;
+    width: 100%;
+">
+  <div class="col-md-6">
+    <div  class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Panel success</h3>
+      </div>
+      <div class="panel-body">
+      <div id="userInfo">
+        Hello Blah
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div  class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Panel success</h3>
+    </div>
+    <div class="panel-body">
+    <div id="userInfo">
+      twitter&nbsp;Facebook&nbsp;flickr
+    </div>
+  </div>
+  </div>
+</div>
+
+</div>
 
   
 
