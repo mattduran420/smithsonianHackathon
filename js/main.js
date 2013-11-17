@@ -9,6 +9,7 @@ function onScan(result) {
   switchUser(result);
   $('#bottomSection').show();
   $("#userInfo").append(/[^/]*$/.exec(result)[0])
+  $('#video').toggle();
 }
 
 function onAddFavorites(result) {
