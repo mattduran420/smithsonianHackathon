@@ -44,10 +44,17 @@ if($curlError){
 		"text" => $text);
 	$response['images']['online_media'] = get_object_vars($response['images']['online_media']);
 	$response['images']['online_media']['media'] = get_object_vars($response['images']['online_media']['media'][0]);
-	$keys = array_keys($response);
-
+	$response['images']['title'] = get_object_vars($response['images']['title']);
+	$response['images']['title'] = ($response['images']['title']['content']);
+	$response['text']['notes'] = get_object_vars($response['text']['notes'][0]);
+	/*
+	$keys = array_keys($response['text']);
+	var_dump($keys);
+	echo "<br/><br/>";
+	var_dump($response['text']['notes']);
+	*/
 	echo json_encode($response);
  
 }
-
+;
 ?>	

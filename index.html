@@ -72,17 +72,15 @@ qrcode.callback=onScan
     padding-top:20px;
 " align="center">
   <p>
-        <button type="button" class="btn btn-default" onclick="changeVisibility('#search')">button</button>
-        <button type="button" class="btn btn-default">button</button>
-        <button type="button" class="btn btn-lg btn-success" onclick="changeVisibility('#video')">:D</button>
-        <button type="button" class="btn btn-default">button</button>
-        <button type="button" class="btn btn-default">button</button> 
+        <button type="button" class="btn btn-default" onclick="changeVisibility('#search')">Search</button>
+        <button type="button" class="btn btn-default" onclick="changeVisibility('#video')">Check In</button>
+        <button type="button" class="btn btn-default">Map</button>
       </p>
       <div class="col-md-4" align="center">
       </div>
       <div class="col-md-4" align="center">
-        <input id="search" placeholder="Search" type="text" class="hidden form-control col-md-12">
-        <div id="video" class="hidden col-md-12"><div class="well"><div id="mainbody"><canvas style="visibility: hidden; position: fixed" id="qr-canvas" width="100%" height="150px"></div></canvas>
+        <input id="search" placeholder="Search" type="text" class="hidden form-control col-md-12" style="position:absolute;z-index:555555">
+        <div id="video" class="hidden col-md-12"><div class="well" style="position:absolute;z-index:555555"><div id="mainbody"><canvas style="visibility: hidden; position: fixed" id="qr-canvas" width="100%" height="150px"></div></canvas>
 
 <div id="result"></div>
 <div id="outdiv"></div>
@@ -113,16 +111,54 @@ qrcode.callback=onScan
     padding-top: 100px;
     overflow:hidden;
 ">
+
+
 <div class="col-lg-12">
 <div id="preview" style="padding-bottom:0">
-      <div id="preview-coverflow" style="height: 320px;width:100%" state="expanded" onclick="resizeBox()">
-        
-        <div class="cover" style="position: absolute; z-index: 3; left: -8.265701258081265px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#000;"><img class="reflected" src="js/coverflow/demo/person.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;background-color:#000;"></canvas></div>
-        <div class="cover current" style="position: absolute; z-index: 4; left: 161px; -webkit-transform: scale(1, 1) perspective(321px) rotateY(0deg); -webkit-filter: none; width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#000;"><img class="reflected" src="js/coverflow/demo/rose.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
-        <div class="cover" style="position: absolute; z-index: 3; left: 330.26570125808126px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(-57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 320px; overflow: hidden; filter: none; display: block;background-color:#000;"><img class="reflected" src="js/coverflow/demo/seagull.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
-        <div class="cover" style="position: absolute; z-index: 2; left: 388.9863273947651px; -webkit-transform: scale(0.5681980515339464, 0.5681980515339464) perspective(321px) rotateY(-43.18019484660536deg); width: 90%; height: 320px; background-color:#000;overflow: hidden; -webkit-filter: contrast(0.29289321881345254) brightness(1.7071067811865475); filter: none; display: block;"><img class="reflected" src="js/coverflow/demo/solarpower.jpg" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;"></canvas></div>
+
+
+      <div id="preview-coverflow" style="height: 320px;width:100%" state="expanded" onclick="resizeBox()"> 
+      </div>
+
+
 </div>
-</div>
+
+
+
+   <script>
+        var slides = '';
+      var ids = Array('Asaam_1975.22','Asaam_1986.92.66','Asaam_1980.49.3','Asaam_1962.8.44','Asaam_2000.26.2')
+        function addSlide(slides,imgsrc, text, title){
+
+        var beginning = '<div class="cover" style="position: absolute; z-index: 3; left: -8.265701258081265px; -webkit-transform: scale(0.665745789630079, 0.665745789630079) perspective(321px) rotateY(57.77924554357096deg); -webkit-filter: contrast(0.6173165676349102) brightness(1.3826834323650898); width: 90%; height: 500px; overflow: hidden; filter: none; display: block;background-color:#000;"><img class="reflected" src="'
+
+
+        var end = '" style="display: block; border: 0px;"><canvas width="320" height="80" style="display: block; border: 0px;background-color:#000;"></canvas></div>'
+
+        var description = '<div style="position: absolute; /* background-color: rgb(238, 238, 238); */ z-index: 200; height: 100%; right: 0; margin-left: 50%;padding-right:20px;/* left: 216.63180457672502px; */ /* -webkit-filter: contrast(0.29289321881345254) brightness(1.7071067811865475); */ filter: none;/* -webkit-transform: scale(0.5681980515339464, 0.5681980515339464) perspective(314px) rotateY(-27.071067811865476deg); */" class="descriptionContainer"><h2>' + title + '</h2><p>' + text + '</p></div>';
+
+        window.slides = window.slides + beginning + imgsrc + end + description
+      }
+
+    
+  
+        for(var i = 0; i < ids.length; i++){
+          $.ajax({
+            url: "http://smith.raspi.pw/json/getItem.php?id=" + ids[i],
+            type: "GET",
+            async: false,
+            }).success(function(response) {
+            var response = $.parseJSON(response);
+            var text = response.text.notes.content
+            //var title = "te"
+            var title = response.images.title
+            addSlide(slides,response.images.online_media.media.content,text,title)
+          });
+        }
+
+ $('#preview-coverflow').append(slides);
+  </script>
+
 <script>
 function resizeBox(){
   if($("#preview-coverflow").attr("state") == "expanded")
@@ -200,8 +236,8 @@ function resizeBox(){
 <div id="bottomSection" style="
     height: 100px;
     bottom: 0;
-    position: absolute;
     margin-bottom: 0;
+    margin-top:50px;
     z-index: 55555;
     width: 100%;
 ">
@@ -214,12 +250,11 @@ $.ajax({
 }).success(function(response) {
     response = JSON.parse(response)
     lists = response.listResults.lists
-    lists = lists[0]
-    $("#userInfo").html('Welcome ' + lists.name)
-    
+    lists = lists[0]    
   }
 );
-
+$("#bottomSection").hide();
+$(".descriptionContainer").css("display","none");
 </script>
 
 
@@ -231,7 +266,7 @@ $.ajax({
         <h3 class="panel-title">Panel success</h3>
       </div>
       <div class="panel-body">
-      <div id="userInfo">
+      <div id="userInfo">Welcome 
       </div>
 
       <div class="btn-group dropup">

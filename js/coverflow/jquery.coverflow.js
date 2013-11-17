@@ -263,9 +263,9 @@
 								),
 					transform;
 
-				if (isVisible) {
+				/*if (isVisible) {
 					$(cover).show();
-				}
+				} */
 
 				$(cover).stop().css({
 					'z-index':	zIndex
