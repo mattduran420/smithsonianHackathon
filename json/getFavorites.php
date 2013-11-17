@@ -1,3 +1,4 @@
+<?php header('Access-Control-Allow-Origin: *'); ?>
 <?php
 
 $url = 'http://edan-api.si.edu/collectService?sl.type=lists&sl.action=review&sl.owner=artpass&ls.id=' . $_GET["ls.id"] . "&sl.min.private=0&wt=json";

@@ -1,8 +1,7 @@
-
 <?php header('Access-Control-Allow-Origin: *'); ?>
-<?php
+<?
 
-$url = 'http://edan-api.si.edu/collectService?sl.type=lists&sl.action=review&sl.owner=artpass&ls.id=' . $_GET["ls.id"] . "&sl.min.private=0&wt=json";
+$url = "http://edan-api.si.edu:80/metadataService?q=record_ID%3" . $_GET['id']. "&wt=json";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
@@ -33,21 +32,21 @@ if($curlError){
  
 // Else you have a successful response. 
 } else {
- 
-	//echo $api_response;
-	$array = json_decode($api_response);
-	$array = get_object_vars($array);
-	//var_dump($array);
-	$lists = $array['listResults'];
-	$lists = get_object_vars($lists);
-	if($lists['numFound'] > 0){
-		var_dump($lists);
-		//http://edan-api.si.edu/api/list?action=add&itemId=" + itemId + "&listId=" + listId
+ 	$response = json_decode($api_response);
+	$response = get_object_vars($response);
+	$response = $response['response'];
+	$response = get_object_vars($response);
+	$response = $response["docs"][0];
+	$response = get_object_vars($response);
+	$images = get_object_vars($response['descriptiveNonRepeating']);
+	$text = get_object_vars($response['freetext']);
+	$response = array("images" => $images,
+		"text" => $text);
+	$response['images']['online_media'] = get_object_vars($response['images']['online_media']);
+	$response['images']['online_media']['media'] = get_object_vars($response['images']['online_media']['media'][0]);
+	$keys = array_keys($response);
 
-	}
-	else{
-		//http://edan-api.si.edu:80/collectService?sl.type=lists&sl.action=create&sl.name=martin&sl.title=Martin's%20Favorites&sl.owner=artpass&wt=json
-	}
+	echo json_encode($response);
  
 }
 
