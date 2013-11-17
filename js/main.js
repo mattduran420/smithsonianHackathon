@@ -7,7 +7,6 @@ function switchUser() {
 
 function onScan(result) {
   switchUser(result);
-  alert(result)
   $('#bottomSection').show();
   $("#userInfo").append(/[^/]*$/.exec(result)[0])
 }

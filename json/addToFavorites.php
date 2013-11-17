@@ -32,7 +32,8 @@ if($curlError){
  
 // Else you have a successful response. 
 } else {
- 
+ 	
+	$response = json_decode($api_response);
 	echo $api_response;
  
 }
