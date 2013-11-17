@@ -9,6 +9,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.js"></script>
+<script type="text/javascript" src="qrscanner/grid.js"></script>
+<script type="text/javascript" src="qrscanner/version.js"></script>
+<script type="text/javascript" src="qrscanner/detector.js"></script>
+<script type="text/javascript" src="qrscanner/formatinf.js"></script>
+<script type="text/javascript" src="qrscanner/errorlevel.js"></script>
+<script type="text/javascript" src="qrscanner/bitmat.js"></script>
+<script type="text/javascript" src="qrscanner/datablock.js"></script>
+<script type="text/javascript" src="qrscanner/bmparser.js"></script>
+<script type="text/javascript" src="qrscanner/datamask.js"></script>
+<script type="text/javascript" src="qrscanner/rsdecoder.js"></script>
+<script type="text/javascript" src="qrscanner/gf256poly.js"></script>
+<script type="text/javascript" src="qrscanner/gf256.js"></script>
+<script type="text/javascript" src="qrscanner/decoder.js"></script>
+<script type="text/javascript" src="qrscanner/qrcode.js"></script>
+<script type="text/javascript" src="qrscanner/findpat.js"></script>
+<script type="text/javascript" src="qrscanner/alignpat.js"></script>
+<script type="text/javascript" src="qrscanner/databr.js"></script>
+<script type="text/javascript" src="qrscanner/webqr.js"></script>
 
 
     <script src="./index_files/bootstrap.min.js"></script>
@@ -35,10 +53,14 @@
 
     <link href="http://getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
   <style type="text/css"></style><style id="holderjs-style" type="text/css"></style></head>
+<script>
+function test(result){
+alert(result)
+}
+qrcode.callback=test
 
-  <body style="
-    background-color: #000;
-">
+</script>
+  <body>
 <div class="" style="
     position: fixed;
     z-index: 999999;
@@ -49,9 +71,9 @@
     height: 50px;
 " align="center">
   <p>
-        <button type="button" class="btn btn-lg btn-primary" onclick="changeVisibility('#search')">o--</button>
+        <button type="button" class="btn btn-lg btn-primary" onclick="changeVisibility('#search')">button</button>
         <button type="button" class="btn btn-lg btn-primary">button</button>
-        <button type="button" class="btn btn-lg btn-success">:D</button>
+        <button type="button" class="btn btn-lg btn-success" onclick="changeVisibility('#video')">:D</button>
         <button type="button" class="btn btn-lg btn-primary">button</button>
         <button type="button" class="btn btn-lg btn-primary">button</button> 
       </p>
@@ -59,14 +81,26 @@
       </div>
       <div class="col-md-4" align="center">
         <input id="search" placeholder="Search" type="text" class="hidden form-control col-md-12">
+        <div id="video" class="hidden col-md-12"><div class="well"><div id="mainbody"><canvas style="visibility: hidden; position: fixed" id="qr-canvas" width="100%" height="150px"></div></canvas>
+
+<div id="result"></div>
+<div id="outdiv"></div>
+</div></div>
+        </div>
       </div>
   </div>
   <script>
   function changeVisibility(id){
-    if($(id).hasClass('hidden'))
+
+    if($(id).hasClass('hidden')){
       $(id).removeClass('hidden')
-    else
+        if(id == "#video"){
+          load()
+        }
+    }
+    else{
       $(id).addClass('hidden')
+    }
   }
   </script>
 
