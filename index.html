@@ -28,6 +28,8 @@
 <script type="text/javascript" src="qrscanner/databr.js"></script>
 <script type="text/javascript" src="qrscanner/webqr.js"></script>
 
+<script src="edan-api.js"></script>
+<script src="js/main.js"></script>
 
     <script src="./index_files/bootstrap.min.js"></script>
     <script src="./index_files/holder.js"></script>
@@ -54,10 +56,8 @@
     <link href="http://getbootstrap.com/examples/carousel/carousel.css" rel="stylesheet">
   <style type="text/css"></style><style id="holderjs-style" type="text/css"></style></head>
 <script>
-function test(result){
-alert(result)
-}
-qrcode.callback=test
+
+qrcode.callback=onScan
 
 </script>
   <body>
@@ -209,7 +209,7 @@ function resizeBox(){
 
 <script>
 $.ajax({
-  url: "http://smith.raspi.pw/json/getFavorites.php?ls.id=5",
+  url: "http://smith.raspi.pw/json/getFavorites.php?ls.id=" + gUser,
   type: "GET",
 }).success(function(response) {
     response = JSON.parse(response)
@@ -233,6 +233,20 @@ $.ajax({
       <div class="panel-body">
       <div id="userInfo">
       </div>
+
+      <div class="btn-group dropup">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Favorites</button>
+        
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="#" onclick="edan.addToFavorites('recordid', gUser, onAddFavorites('recordid'))">Add to Favorites</a></li>
+        </ul>
+      </div>
+
+
     </div>
     </div>
   </div>
@@ -242,7 +256,7 @@ $.ajax({
       <h3 class="panel-title">Panel success</h3>
     </div>
     <div class="panel-body">
-    <div id="userInfo">
+    <div id="social">
       twitter&nbsp;Facebook&nbsp;flickr
     </div>
   </div>
