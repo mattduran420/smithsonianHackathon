@@ -205,6 +205,26 @@ function resizeBox(){
     z-index: 55555;
     width: 100%;
 ">
+
+
+<script>
+$.ajax({
+  url: "http://smith.raspi.pw/json/getFavorites.php?ls.id=5",
+  type: "GET",
+}).success(function(response) {
+    response = JSON.parse(response)
+    lists = response.listResults.lists
+    lists = lists[0]
+    $("#userInfo").html('Welcome ' + lists.name)
+    
+  }
+);
+
+</script>
+
+
+
+
   <div class="col-md-6">
     <div  class="panel panel-success">
       <div class="panel-heading">
@@ -212,7 +232,6 @@ function resizeBox(){
       </div>
       <div class="panel-body">
       <div id="userInfo">
-        Hello Blah
       </div>
     </div>
     </div>
